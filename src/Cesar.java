@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Created by 46988172t on 12/04/16.
+ * Created by 46465442z on 12/04/16.
  */
 public class Cesar extends HttpServlet {
 
@@ -64,8 +64,9 @@ public class Cesar extends HttpServlet {
                 "           <p>Texto original: " + valueString + "</p>"
         );
 
-        for (int iterador = 0; iterador < 26; iterador++) {
-            out.println("<li>" + encriptCesar(valueString, iterador) + "</p></li>");
+        // Escribimos en cada linea encriptado con un indice diferente
+        for (int iterador = 1; iterador < 26; iterador++) {
+            out.println("<li>" + encriptarCesar(valueString, iterador) + "</p></li>");
         }
 
         out.println(" </center>\n" +
@@ -73,22 +74,24 @@ public class Cesar extends HttpServlet {
                 "</html>");
     }
 
-    private String encriptCesar(String valueString, int i) {
-        int l, j;
-        char fraseCifrada[];
-        fraseCifrada = valueString.toCharArray();
+    private String encriptarCesar(String textoAEncriptar, int indice) {
 
-        for (l = 0; l < valueString.length(); l++) {
-            for (j = 0; j < i; j++) {
-                if ((fraseCifrada[l] >= 65 && fraseCifrada[l] < 90) || (fraseCifrada[l] >= 97 && fraseCifrada[l] < 122)) {
-                    fraseCifrada[l]++;
-                } else if (fraseCifrada[l] == 90)
-                    fraseCifrada[l] = 'A';
-                else if (fraseCifrada[l] == 122)
-                    fraseCifrada[l] = 'a';
+        char fraseCifrada[];
+        fraseCifrada = textoAEncriptar.toCharArray();
+
+        for (int iteradorCaracteres = 0; iteradorCaracteres < textoAEncriptar.length(); iteradorCaracteres++) {
+            for (int iteradorAlfabeto = 0; iteradorAlfabeto < indice; iteradorAlfabeto++) {
+
+                if ((fraseCifrada[iteradorCaracteres] >= 65 && fraseCifrada[iteradorCaracteres] < 90) || (fraseCifrada[iteradorCaracteres] >= 97 && fraseCifrada[iteradorCaracteres] < 122)) {
+                    fraseCifrada[iteradorCaracteres]++;
+                }
+                else if (fraseCifrada[iteradorCaracteres] == 90)
+                    fraseCifrada[iteradorCaracteres] = 'A';
+                else if (fraseCifrada[iteradorCaracteres] == 122)
+                    fraseCifrada[iteradorCaracteres] = 'a';
             }
         }
-        valueString = String.valueOf(fraseCifrada);
-        return valueString;
+        textoAEncriptar = String.valueOf(fraseCifrada);
+        return textoAEncriptar;
     }
 }

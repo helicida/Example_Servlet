@@ -40,14 +40,15 @@
 
   <body>
     <center>
+
       <h1>Cifrado cesar</h1>
       <p>Introduce un texto que encriptaremos usando el cifrado Cesar</p>
 
       <form action="CesarSergi" method="post">
         <input name="value" type="text"/>
         <input type="submit" value="Enviar"/>
-
       </form>
+
     </center>
   </body>
 </html>
